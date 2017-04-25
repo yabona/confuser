@@ -1,4 +1,4 @@
-﻿# Confuser script
+# Confuser script
 # More novelty than anything
 
 $nouns = (Get-content $PSscriptRoot\nouns.txt ).split("`n") 
@@ -20,7 +20,7 @@ while($true) {
     
     # make a cool progress bar, normies love that shit
     Write-host -nonewline "`n      [" -ForegroundColor DarkCyan
-    for ($i = 0; $i -lt 21; $i++) {
+    for ($i = 0; $i -lt (5..75|Get-random); $i++) {
         write-host -NoNewline "=" -ForegroundColor DarkCyan
         Sleep -m (10..100|Get-Random)
     }
@@ -35,9 +35,9 @@ while($true) {
     # make it look Movie-Hack-ey
     if ((1..10|Get-random) -eq 10) {
         if(Get-Random $true,$false) {
-            Write-Host "[ ACCESS DENIED ] " -backgroundColor DarkRed
+            Write-Host "`t[ ACCESS DENIED ] " -backgroundColor DarkRed
         } else {
-            Write-Host "[ ACCESS GRANTED ] " -backgroundColor DarkGreen
+            Write-Host "`t[ ACCESS GRANTED ] " -backgroundColor DarkGreen
         }
     }
 
@@ -106,9 +106,35 @@ while($true) {
                               `!^`"
 
     " -ForegroundColor DarkMagenta
-    
     }
 
+    # fake connection interrupt
+    if ((1..20|Get-random) -eq 7) {
+        Write-Host "`n[!]   " -ForegroundColor Gray -NoNewline
+        Write-Host "Connection broken! Retrying..." -ForegroundColor Yellow -NoNewline
+        
+        do {
+            Write-host -nonewline "`n      [" -ForegroundColor DarkCyan
+            for ($i = 0; $i -lt (50..300|Get-Random); $i++) {
+                write-host -NoNewline "!" -ForegroundColor DarkCyan
+                Sleep -m (1..50|Get-Random)
+            }
+            Write-Host "] " -NoNewline -ForegroundColor DarkCyan
+        } while (Get-Random $true,$false)
+        
+        sleep -m 200
+        Write-host "`n[~]   " -NoNewline -ForegroundColor Gray
+        write-host "Establishing TLA tunnel..." -NoNewline
+        Write-host -nonewline "`n      [" -ForegroundColor DarkCyan
+        for ($i = 0; $i -lt (20..100|Get-random); $i++) {
+            write-host -NoNewline "o" -ForegroundColor DarkCyan
+            Sleep -m (1..50|Get-Random)
+        }
+        Write-Host "] " -NoNewline -ForegroundColor DarkCyan
+        sleep -m 500
+        Write-host "`n[~]   " -NoNewline -ForegroundColor Gray
+        write-host "Replayed key: $((1..20 | %{ '{0:X}' -f (Get-Random -Max 16) }) -join '')`n"
+    }
 
 
     # done.
