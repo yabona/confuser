@@ -1,0 +1,13 @@
+deleting
+hacking
+formatting
+creating backup
+creating restore point
+navigating
+browsing
+enumerating
+encrypting
+decrypting
+testing
+connecting
+attempting
